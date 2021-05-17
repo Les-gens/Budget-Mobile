@@ -26,6 +26,11 @@ class DashboardFragment : Fragment() {
         dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
+
+        val textCurrentMonthView: TextView = root.findViewById(R.id.currentMonth)
+        dashboardViewModel.currentMonth.observe(viewLifecycleOwner, Observer {
+            textCurrentMonthView.text = it
+        })
         return root
     }
 }
