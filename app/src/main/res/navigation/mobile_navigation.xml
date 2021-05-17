@@ -17,11 +17,4 @@
         android:label="@string/title_spendings"
         tools:layout="@layout/fragment_home" />
 
-
-
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.budget.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
 </navigation>
