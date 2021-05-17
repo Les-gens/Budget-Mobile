@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "540355797585",
+    "project_id": "dev-mobile-finance-ab94a",
+    "storage_bucket": "dev-mobile-finance-ab94a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:540355797585:android:ae153d4dcc3e8f1cf2ce70",
+        "android_client_info": {
+          "package_name": "com.example.budget"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "540355797585-9e3qgcqcu2lr38ud17b4k9ahkevr7l4o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyckZwDzhLZRKH1axbFOupjPppn8MZrpE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "540355797585-9e3qgcqcu2lr38ud17b4k9ahkevr7l4o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
