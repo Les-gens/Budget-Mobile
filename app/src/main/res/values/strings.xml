@@ -2,4 +2,11 @@
     <string name="app_name">Budget</string>
     <string name="title_spendings">Stats</string>
     <string name="title_dashboard">Dashboard</string>
+    <!--    Sign up-->
+    <string name="confirm_password">Confirm password</string>
+    <string name="create_account">Create Account</string>
+    <string name="email">Email</string>
+    <string name="or">OR</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign in</string>
 </resources>
