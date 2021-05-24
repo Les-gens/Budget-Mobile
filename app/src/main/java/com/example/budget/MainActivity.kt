@@ -1,12 +1,15 @@
 package com.example.budget
 
 import android.os.Bundle
+import android.widget.ImageButton
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.budget.ui.auth.SignUpActivity
+import com.example.budget.utils.FirebaseUtils
 
 class MainActivity : AppCompatActivity() {
 
