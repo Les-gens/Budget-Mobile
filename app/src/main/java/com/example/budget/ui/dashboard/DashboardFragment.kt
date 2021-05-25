@@ -1,18 +1,20 @@
 package com.example.budget.ui.dashboard
 
-import android.os.Build
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.budget.R
-import androidx.navigation.fragment.findNavController
+import com.example.budget.extensions.Extensions.toast
+import com.example.budget.ui.auth.SignUpActivity
+import com.example.budget.utils.FirebaseUtils.firebaseAuth
+
 
 class DashboardFragment : Fragment() {
 
@@ -45,6 +47,19 @@ class DashboardFragment : Fragment() {
         nextMonthBtn.setOnClickListener{
             dashboardViewModel.nextMonth()
         }
+
+        val logoutBtn = root.findViewById<ImageButton>(R.id.logoutButton)
+        logoutBtn.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(view: View): Unit {
+                firebaseAuth.signOut()
+                val intent = Intent(context, SignUpActivity::class.java);
+                startActivity(intent);
+                activity?.toast("signed out")
+                activity?.finish()
+            }
+        })
+
+
 
         return root
     }
