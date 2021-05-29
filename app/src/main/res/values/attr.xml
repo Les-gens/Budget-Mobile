@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="entry">
+        <attr name="entryTitle" format="string"/>
+        <attr name="entryTag" format="string"/>
+        <attr name="amountIncom" format="string"/>
+        <attr name="amountExpense" format="string"/>
+    </declare-styleable>
+</resources>

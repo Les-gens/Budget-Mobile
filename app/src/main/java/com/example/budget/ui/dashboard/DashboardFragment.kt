@@ -24,10 +24,9 @@ class DashboardFragment : Fragment() {
         dashboardViewModel =
                 ViewModelProvider(this).get(DashboardViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val monthTextView: TextView = root.findViewById(R.id.month)
         val simpleDateFormat = SimpleDateFormat("MM")
         val currentMonth: String = simpleDateFormat.format(Date())
-        monthTextView.text = "toto"
+
         return root
     }
 }
