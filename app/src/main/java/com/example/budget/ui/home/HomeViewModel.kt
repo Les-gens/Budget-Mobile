@@ -8,6 +8,8 @@ import com.example.budget.models.EntriesModel
 import com.example.budget.repositories.EntriesRepository
 import com.google.firebase.firestore.QuerySnapshot
 import java.util.*
+import com.google.firebase.firestore.EventListener
+
 
 class HomeViewModel : ViewModel() {
 
@@ -20,17 +22,32 @@ class HomeViewModel : ViewModel() {
     var entries: MutableLiveData<List<EntriesModel>> = MutableLiveData()
     val TAG = "ENTRIIIIIES"
 
-//    fun getEntries() {
-//        val entries =
-//            repo.getAllEntries().addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
-//                if (e != null) {
-//                    Log.w(TAG, "Listen failed.", e)
-//                    entries.value = null
-//                    return@EventListener
-//                }
-//
-//
-//            })
-//    }
+    var repository = EntriesRepository()
+
+    var savedEntries : MutableLiveData<List<EntriesModel>> = MutableLiveData()
+
+    fun getEntries() : LiveData<List<EntriesModel>> {
+
+        repository.getAllEntries().addSnapshotListener(
+            EventListener<QuerySnapshot> { value, e ->
+                if (e != null) {
+                    Log.v(TAG, "Listen failed.", e)
+                    savedEntries.value = null
+                    return@EventListener
+                }
+
+                var entriesList : MutableList<EntriesModel> = mutableListOf()
+                for (doc in value!!) {
+                    var entryItem = doc.toObject(EntriesModel::class.java)
+                    entriesList.add(entryItem)
+                }
+                savedEntries.value = entriesList
+            })
+
+        return savedEntries
+    }
+
+
+
 
 }
