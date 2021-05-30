@@ -6,12 +6,5 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment"
-            class="com.example.budget.ui.entry.EntryFragment"
-            android:layout_width="411dp"
-            android:layout_height="731dp"
-            tools:ignore="MissingConstraints" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
