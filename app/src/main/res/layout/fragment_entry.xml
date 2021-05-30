@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment">
 
 
 
@@ -10,8 +13,7 @@
         android:layout_height="30dp"
         android:orientation="horizontal"
         android:weightSum="100"
-        android:gravity="center"
-        >
+        android:gravity="center">
 
         <TextView
             android:id="@+id/entry_title"
@@ -26,6 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#C4C4C4"
+            android:text="toto"
             android:layout_weight="25"
             />
 
@@ -47,4 +50,4 @@
             />
     </LinearLayout>
 
-</merge>
+</androidx.constraintlayout.widget.ConstraintLayout>

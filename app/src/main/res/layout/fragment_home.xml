@@ -6,12 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
     <LinearLayout
+        android:id="@+id/layout_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity" android:orientation="vertical">
 
-        <fragment
-            android:id="@+id/component_entry"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_entry"
             class="com.example.budget.ui.entry.EntryFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

@@ -27,8 +27,7 @@ class EntryFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         entryViewModel = ViewModelProvider(this).get(EntryViewModel::class.java)
-        val root = inflater.inflate(R.layout.component_entry, container, false)
-
+        val root = inflater.inflate(R.layout.fragment_entry, container, false)
         val entryTitle: TextView = root.findViewById(R.id.entry_title)
         val entryTag: TextView = root.findViewById(R.id.entry_tag)
         val incomeAmount: TextView = root.findViewById(R.id.income_amount)
