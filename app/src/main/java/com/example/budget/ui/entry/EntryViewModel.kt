@@ -9,10 +9,10 @@ class EntryViewModel : ViewModel() {
         value = "Super robot"
     }
     private val _text2 = MutableLiveData<String>().apply {
-        value = "Super robot"
+        value = "Cadeau"
     }
     private val _text3 = MutableLiveData<String>().apply {
-        value = "Super robot"
+        value = "15€"
     }
     private val _text4 = MutableLiveData<String>().apply {
         value = "Super robot"
