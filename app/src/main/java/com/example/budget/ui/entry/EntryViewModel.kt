@@ -4,7 +4,11 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.budget.models.EntriesModel
+import com.example.budget.repositories.EntriesRepository
 import com.example.budget.utils.FirebaseUtils.db
+import com.google.firebase.firestore.QuerySnapshot
+import java.util.*
 
 class EntryViewModel : ViewModel() {
     private val _text = MutableLiveData<String>().apply {
@@ -24,14 +28,8 @@ class EntryViewModel : ViewModel() {
     val text3: LiveData<String> = _text3
     val text4: LiveData<String> = _text4
 
-    val res = db.collection("entries")
-    .get()
-    .addOnSuccessListener { result ->
-        for (document in result) {
-            Log.d(TAG, "${document.id} => ${document.data}")
-        }
-    }
-    .addOnFailureListener { exception ->
-        Log.w(TAG, "Error getting documents.", exception)
-    }
+
+
+
+
 }
