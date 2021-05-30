@@ -20,7 +20,7 @@ class DashboardViewModel : ViewModel() {
 
     var actual = LocalDateTime.now()
 
-    var formatter = DateTimeFormatter.ofPattern("MMMM-yyyy")
+    var formatter = DateTimeFormatter.ofPattern("MM-yyyy")
 
     private val _text = MutableLiveData<String>().apply {
         value = "Gestion de budget"
@@ -51,20 +51,19 @@ class DashboardViewModel : ViewModel() {
     }
 
     fun saveEntryToFireBase(model: EntriesModel) {
-        var formatter =  DateTimeFormatter.ofPattern("MM-yyyy")
-        var formattedDate = actual.format(formatter)
 
-        repository.saveEntry(model, formattedDate.toString()).addOnFailureListener {
-            Log.e(TAG,"Failed to save Entry!")
+        repository.saveEntry(model, _currentMonth.toString()).addOnFailureListener {
+            Log.v(TAG,"Failed to save Entry!")
         }
 
     }
 
     fun getEntries() : LiveData<List<EntriesModel>> {
-        repository.getAllEntries(actual.format(formatter).toString()).addSnapshotListener(
+
+        repository.getAllEntries().addSnapshotListener(
             EventListener<QuerySnapshot> { value, e ->
             if (e != null) {
-                Log.w(TAG, "Listen failed.", e)
+                Log.v(TAG, "Listen failed.", e)
                 savedEntries.value = null
                 return@EventListener
             }
