@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.budget.AddEntryActivity
 import com.example.budget.R
 import com.example.budget.extensions.Extensions.toast
 import com.example.budget.ui.auth.SignUpActivity
@@ -54,6 +55,16 @@ class DashboardFragment : Fragment() {
                 val intent = Intent(context, SignUpActivity::class.java);
                 startActivity(intent);
                 activity?.toast("signed out")
+                activity?.finish()
+            }
+        })
+
+        val addEntryBtn = root.findViewById<ImageButton>(R.id.entry_add)
+
+        addEntryBtn.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(view: View): Unit {
+                val intent = Intent(context, AddEntryActivity::class.java);
+                startActivity(intent);
                 activity?.finish()
             }
         })
