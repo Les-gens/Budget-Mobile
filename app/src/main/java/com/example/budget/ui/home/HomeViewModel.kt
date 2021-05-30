@@ -17,17 +17,20 @@ class HomeViewModel : ViewModel() {
     val text: LiveData<String> = _text
 
     val repo = EntriesRepository()
-    var entries : MutableLiveData<List<EntriesModel>> = MutableLiveData()
+    var entries: MutableLiveData<List<EntriesModel>> = MutableLiveData()
     val TAG = "ENTRIIIIIES"
 
-    fun getEntries() {
-        val entries = repo.getAllEntries().addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
-            if (e != null) {
-                Log.w(TAG, "Listen failed.", e)
-                entries.value = null
-                return@EventListener
-            }
+//    fun getEntries() {
+//        val entries =
+//            repo.getAllEntries().addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
+//                if (e != null) {
+//                    Log.w(TAG, "Listen failed.", e)
+//                    entries.value = null
+//                    return@EventListener
+//                }
+//
+//
+//            })
+//    }
 
-
-        })
 }

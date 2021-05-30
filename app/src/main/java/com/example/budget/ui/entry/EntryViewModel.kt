@@ -28,8 +28,4 @@ class EntryViewModel : ViewModel() {
     val text3: LiveData<String> = _text3
     val text4: LiveData<String> = _text4
 
-
-
-
-
 }
