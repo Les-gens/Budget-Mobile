@@ -7,9 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.example.budget.models.EntriesModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import com.example.budget.extensions.Extensions.toast
 import com.example.budget.repositories.EntriesRepository
-import com.example.budget.utils.FirebaseUtils.db
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.QuerySnapshot
 
@@ -43,11 +41,13 @@ class DashboardViewModel : ViewModel() {
     fun previousMonth(){
         actual = actual.minusMonths(1);
         _currentMonth.value = actual.format(formatter);
+        getEntries()
     }
 
     fun nextMonth(){
         actual = actual.plusMonths(1);
         _currentMonth.value = actual.format(formatter);
+        getEntries()
     }
 
     fun saveEntryToFireBase(model: EntriesModel) {
@@ -60,7 +60,7 @@ class DashboardViewModel : ViewModel() {
 
     fun getEntries() : LiveData<List<EntriesModel>> {
 
-        repository.getAllEntries().addSnapshotListener(
+        repository.getAllEntries(currentMonth.value.toString()).addSnapshotListener(
             EventListener<QuerySnapshot> { value, e ->
             if (e != null) {
                 Log.v(TAG, "Listen failed.", e)
@@ -77,7 +77,8 @@ class DashboardViewModel : ViewModel() {
         })
 
         return savedEntries
-
     }
+
+
 
 }

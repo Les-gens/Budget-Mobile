@@ -14,7 +14,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.budget.R
 import com.example.budget.extensions.Extensions.toast
-import com.example.budget.models.EntriesModel
 import com.example.budget.ui.auth.SignUpActivity
 import com.example.budget.utils.FirebaseUtils.firebaseAuth
 
