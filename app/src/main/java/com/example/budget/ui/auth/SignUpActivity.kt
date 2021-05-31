@@ -7,8 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.budget.MainActivity
 import com.example.budget.R
 import com.example.budget.extensions.Extensions.toast
-import com.example.budget.utils.FirebaseUtils.firebaseAuth
-import com.example.budget.utils.FirebaseUtils.firebaseUser
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_create_account.*
 
@@ -16,7 +15,8 @@ class SignUpActivity : AppCompatActivity() {
     lateinit var userEmail: String
     lateinit var userPassword: String
     lateinit var createAccountInputsArray: Array<EditText>
-
+    val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    val firebaseUser: FirebaseUser? = firebaseAuth.currentUser
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_account)

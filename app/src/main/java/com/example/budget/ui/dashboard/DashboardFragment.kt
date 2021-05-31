@@ -16,7 +16,8 @@ import com.example.budget.AddEntryActivity
 import com.example.budget.R
 import com.example.budget.extensions.Extensions.toast
 import com.example.budget.ui.auth.SignUpActivity
-import com.example.budget.utils.FirebaseUtils.firebaseAuth
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import java.lang.Exception
 
 
@@ -24,7 +25,8 @@ class DashboardFragment : Fragment() {
 
     private lateinit var dashboardViewModel: DashboardViewModel
     private lateinit var listView: ListView
-
+    val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    val firebaseUser: FirebaseUser? = firebaseAuth.currentUser
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,

@@ -7,7 +7,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.example.budget.R
 import com.example.budget.extensions.Extensions.toast
-import com.example.budget.utils.FirebaseUtils.firebaseAuth
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_sign_in.*
 
 class SignInActivity : AppCompatActivity() {
@@ -15,7 +15,7 @@ class SignInActivity : AppCompatActivity() {
     lateinit var signInEmail: String
     lateinit var signInPassword: String
     lateinit var signInInputsArray: Array<EditText>
-
+    val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
