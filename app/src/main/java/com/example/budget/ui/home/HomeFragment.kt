@@ -34,12 +34,15 @@ class HomeFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+
+
         homeViewModel =
                 ViewModelProvider(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
 
         val chart = root.findViewById<AnyChartView>(R.id.any_chart_view)
+
         try {
             homeViewModel.getEntries().observe(viewLifecycleOwner, { it ->
                 var expenses = 0.0
@@ -61,10 +64,14 @@ class HomeFragment : Fragment() {
                 pie.data(dataEntries)
                 chart.setChart(pie)
 
+                val textSomme: TextView = root.findViewById(R.id.Somme);
+                textSomme.text = ""+(revenues-expenses);
             })
         } catch (e: Exception) {
 
         }
+
+
 
         return root
     }
