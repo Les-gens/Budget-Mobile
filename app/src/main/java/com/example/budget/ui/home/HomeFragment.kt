@@ -23,6 +23,7 @@ import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.MPPointF
+import java.lang.Exception
 
 class HomeFragment : Fragment() {
 
@@ -39,25 +40,31 @@ class HomeFragment : Fragment() {
 
 
         val chart = root.findViewById<AnyChartView>(R.id.any_chart_view)
-        homeViewModel.getEntries().observe(viewLifecycleOwner, { it ->
-            var entrieslist = arrayOfNulls<String>(it.size)
-            var expenses = 0.0
-            var revenues = 0.0
-            for (i in 0 until it.size){
-                if(it[i].amount < 0) expenses += it[i].amount
-                else revenues += it[i].amount
-            }
-            expenses *= -1
-            val pie: Pie = AnyChart.pie()
-            val dataEntries = ArrayList<DataEntry>()
+        try {
+            homeViewModel.getEntries().observe(viewLifecycleOwner, { it ->
+                var expenses = 0.0
+                var revenues = 0.0
+                if (it != null) {
+                    var entrieslist = arrayOfNulls<String>(it.size)
+                    for (i in 0 until it.size) {
+                        if (it[i].amount < 0) expenses += it[i].amount
+                        else revenues += it[i].amount
+                    }
+                }
+                expenses *= -1
+                val pie: Pie = AnyChart.pie()
+                val dataEntries = ArrayList<DataEntry>()
 
-            dataEntries.add(ValueDataEntry("expenses", expenses))
-            dataEntries.add(ValueDataEntry("revenues", revenues))
+                dataEntries.add(ValueDataEntry("expenses", expenses))
+                dataEntries.add(ValueDataEntry("revenues", revenues))
 
-            pie.data(dataEntries)
-            chart.setChart(pie)
+                pie.data(dataEntries)
+                chart.setChart(pie)
 
-        })
+            })
+        } catch (e: Exception) {
+
+        }
 
         return root
     }

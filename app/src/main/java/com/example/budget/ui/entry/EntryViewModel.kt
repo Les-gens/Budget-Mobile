@@ -8,9 +8,13 @@ import com.example.budget.models.EntriesModel
 import com.example.budget.repositories.EntriesRepository
 import com.example.budget.utils.FirebaseUtils.db
 import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.EventListener
 import java.util.*
 
 class EntryViewModel : ViewModel() {
+
+    val TAG = "FIRESTORE_ENTRY_VMDL"
+
     private val _text = MutableLiveData<String>().apply {
         value = "Super robot"
     }
@@ -27,5 +31,8 @@ class EntryViewModel : ViewModel() {
     val text2: LiveData<String> = _text2
     val text3: LiveData<String> = _text3
     val text4: LiveData<String> = _text4
+
+
+
 
 }
