@@ -23,11 +23,12 @@
         android:id="@+id/amount_form"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="44dp"
         android:ems="10"
         android:hint="20"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_form" />
 
@@ -39,10 +40,9 @@
         android:text="Create"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/amount_form"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.13" />
 
     <TextView
         android:id="@+id/euro"
@@ -60,9 +60,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="01-01-2001"
         android:inputType="date"
         app:layout_constraintBottom_toTopOf="@+id/submit_entry"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/amount_form" />
+        app:layout_constraintTop_toBottomOf="@+id/amount_form"
+        app:layout_constraintVertical_bias="0.77" />
+
+    <Switch
+        android:id="@+id/depense_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dépense"
+        app:layout_constraintBottom_toTopOf="@+id/date_form"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.322"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/amount_form"
+        app:layout_constraintVertical_bias="0.46" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
