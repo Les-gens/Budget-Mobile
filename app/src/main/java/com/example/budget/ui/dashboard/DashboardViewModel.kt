@@ -61,7 +61,7 @@ class DashboardViewModel : ViewModel() {
     fun getEntries() : LiveData<List<EntriesModel>> {
 
         try {
-            repository.getAllEntries().addSnapshotListener(
+            repository.getAllEntries(_currentMonth.value.toString()).addSnapshotListener(
                 EventListener<QuerySnapshot> { value, e ->
                     if (e != null) {
                         Log.v(TAG, "Listen failed.", e)
