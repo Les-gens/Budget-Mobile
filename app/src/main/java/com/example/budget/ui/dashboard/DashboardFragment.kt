@@ -17,6 +17,7 @@ import com.example.budget.R
 import com.example.budget.extensions.Extensions.toast
 import com.example.budget.ui.auth.SignUpActivity
 import com.example.budget.utils.FirebaseUtils.firebaseAuth
+import java.lang.Exception
 
 
 class DashboardFragment : Fragment() {
@@ -71,18 +72,27 @@ class DashboardFragment : Fragment() {
 
         listView = root.findViewById<ListView>(R.id.entries_view)
 
+        try {
+            dashboardViewModel.getEntries().observe(viewLifecycleOwner, { it ->
+                var entrieslist = arrayOfNulls<String>(it.size)
+                for (i in 0 until it.size) {
+                    val entry = it[i]
+                    entrieslist[i] = entry.toString()
+                    println(entry.toString())
+                }
+                val adapter =
+                    context?.let {
+                        ArrayAdapter(
+                            it,
+                            android.R.layout.simple_list_item_1,
+                            entrieslist
+                        )
+                    }
+                listView.adapter = adapter
+            })
+        } catch(e: Exception) {
 
-        dashboardViewModel.getEntries().observe(viewLifecycleOwner, { it ->
-            var entrieslist = arrayOfNulls<String>(it.size)
-            for (i in 0 until it.size){
-                val entry = it[i]
-                entrieslist[i] = entry.toString()
-                println(entry.toString())
-            }
-            val adapter =
-                context?.let { ArrayAdapter(it, android.R.layout.simple_list_item_1, entrieslist) }
-            listView.adapter = adapter
-        })
+        }
 
 
         return root

@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:orientation="horizontal"
-        android:weightSum="100"
-        android:gravity="center">
-
         <TextView
             android:id="@+id/entry_title"
             android:layout_width="match_parent"
@@ -48,6 +39,7 @@
             android:textColor="#E80E00"
             android:layout_weight="25"
             />
-    </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

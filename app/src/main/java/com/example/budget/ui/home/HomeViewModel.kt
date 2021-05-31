@@ -28,21 +28,25 @@ class HomeViewModel : ViewModel() {
 
     fun getEntries() : LiveData<List<EntriesModel>> {
 
-        repository.getAllEntries().addSnapshotListener(
-            EventListener<QuerySnapshot> { value, e ->
-                if (e != null) {
-                    Log.v(TAG, "Listen failed.", e)
-                    savedEntries.value = null
-                    return@EventListener
-                }
+        try {
+            repository.getAllEntries().addSnapshotListener(
+                EventListener<QuerySnapshot> { value, e ->
+                    if (e != null) {
+                        Log.v(TAG, "Listen failed.", e)
+                        savedEntries.value = null
+                        return@EventListener
+                    }
 
-                var entriesList : MutableList<EntriesModel> = mutableListOf()
-                for (doc in value!!) {
-                    var entryItem = doc.toObject(EntriesModel::class.java)
-                    entriesList.add(entryItem)
-                }
-                savedEntries.value = entriesList
-            })
+                    var entriesList: MutableList<EntriesModel> = mutableListOf()
+                    for (doc in value!!) {
+                        var entryItem = doc.toObject(EntriesModel::class.java)
+                        entriesList.add(entryItem)
+                    }
+                    savedEntries.value = entriesList
+                })
+        } catch(e : Exception) {
+
+        }
 
         return savedEntries
     }

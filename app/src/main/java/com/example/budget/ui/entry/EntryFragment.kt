@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -45,6 +46,18 @@ class EntryFragment : Fragment() {
         entryViewModel.text4.observe(viewLifecycleOwner, Observer {
             expenseAmount.text = it
         })
+
+//        entryViewModel.getEntries().observe(viewLifecycleOwner, { it ->
+//            var entrieslist = arrayOfNulls<String>(it.size)
+//            var expenses = 0.0
+//            var revenues = 0.0
+//            for (i in 0 until it.size){
+//                if(it[i].amount < 0) expenses += it[i].amount
+//                else revenues += it[i].amount
+//
+//            }
+//
+//        })
 
 
         return root
