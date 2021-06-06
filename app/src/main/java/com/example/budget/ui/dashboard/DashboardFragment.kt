@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.budget.AddEntryActivity
 import com.example.budget.R
 import com.example.budget.extensions.Extensions.toast
+import com.example.budget.models.EntriesModel
 import com.example.budget.ui.auth.SignUpActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -73,24 +74,15 @@ class DashboardFragment : Fragment() {
         })
 
         listView = root.findViewById<ListView>(R.id.entries_view)
-
         try {
             dashboardViewModel.getEntries().observe(viewLifecycleOwner, { it ->
-                var entrieslist = arrayOfNulls<String>(it.size)
-                for (i in 0 until it.size) {
-                    val entry = it[i]
-                    entrieslist[i] = entry.toString()
-                    println(entry.toString())
+                val  alEntries: ArrayList<EntriesModel> = ArrayList(it.toCollection(ArrayList()))
+                alEntries.sortByDescending { it.amount }
+
+                context?.let {
+                    val adapter: EntryAdapter = EntryAdapter(it, alEntries)
+                    listView.adapter = adapter
                 }
-                val adapter =
-                    context?.let {
-                        ArrayAdapter(
-                            it,
-                            android.R.layout.simple_list_item_1,
-                            entrieslist
-                        )
-                    }
-                listView.adapter = adapter
             })
         } catch(e: Exception) {
 
