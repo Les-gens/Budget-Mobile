@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
 import androidx.core.app.ActivityCompat
 import com.example.budget.R
@@ -23,11 +24,13 @@ import java.util.*
 
 class PhotoFragment : Fragment() {
 
+
     companion object {
         fun newInstance() = PhotoFragment()
     }
 
     private lateinit var viewModel: PhotoViewModel
+    private lateinit var button : ImageButton
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +38,7 @@ class PhotoFragment : Fragment() {
     ): View? {
 
         var root = inflater.inflate(R.layout.fragment_photo, container, false)
-        var button = root.findViewById<ImageButton>(R.id.btnPhoto)
+        button = root.findViewById<ImageButton>(R.id.btnPhoto)
         button.isEnabled = false
 
         if (ActivityCompat.checkSelfPermission(
@@ -58,26 +61,28 @@ class PhotoFragment : Fragment() {
             }
         }
 
-        fun onRequestPermissionsResult(
-            requestCode: Int,
-            permissions: Array<out String>,
-            grantResults: IntArray
-        ) {
-            super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-            if (requestCode == 111 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                button.isEnabled = true
-            }
-        }
 
-         fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-            super.onActivityResult(requestCode, resultCode, data)
-            if (requestCode == 101) {
-                var pic = data?.getParcelableExtra<Bitmap>("data")
-                var path = saveToInternalStorage(pic!!)
-            }
-        }
 
         return root
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 111 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            button.isEnabled = true
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 101) {
+            var pic = data?.getParcelableExtra<Bitmap>("data")
+            var path = saveToInternalStorage(pic!!)
+        }
     }
 
     private fun saveToInternalStorage(bitmapImage: Bitmap): String? {
