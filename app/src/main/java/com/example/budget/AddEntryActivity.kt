@@ -51,9 +51,9 @@ class AddEntryActivity : AppCompatActivity() {
 
         val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         if (Build.VERSION.SDK_INT >= 26) {
-            vibrator.vibrate(VibrationEffect.createOneShot(4000, VibrationEffect.DEFAULT_AMPLITUDE))
+            vibrator.vibrate(VibrationEffect.createOneShot(7000, VibrationEffect.DEFAULT_AMPLITUDE))
         } else {
-            vibrator.vibrate(4000)
+            vibrator.vibrate(7000)
         }
     }
 
