@@ -19,7 +19,7 @@ class EntryAdapter(private val context: Context, private val arrayList: ArrayLis
     }
 
     override fun getItem(position: Int): Any {
-        return position
+        return arrayList[position]
     }
 
     override fun getItemId(position: Int): Long {

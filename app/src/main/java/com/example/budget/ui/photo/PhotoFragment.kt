@@ -1,25 +1,22 @@
 package com.example.budget.ui.photo
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ListView
 import androidx.core.app.ActivityCompat
 import com.example.budget.R
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
+import java.io.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class PhotoFragment : Fragment() {
@@ -61,7 +58,11 @@ class PhotoFragment : Fragment() {
             }
         }
 
-
+        val listView = root.findViewById<ListView>(R.id.photos_view)
+        context?.let {
+            val adapter: PhotoAdapter = PhotoAdapter(it, getPhotos())
+            listView.adapter = adapter
+        }
 
         return root
     }
@@ -82,6 +83,11 @@ class PhotoFragment : Fragment() {
         if (requestCode == 101) {
             var pic = data?.getParcelableExtra<Bitmap>("data")
             var path = saveToInternalStorage(pic!!)
+            context?.let {
+                val listView = activity?.findViewById<ListView>(R.id.photos_view)
+                val adapter: PhotoAdapter = PhotoAdapter(it, getPhotos())
+                listView?.adapter = adapter
+            }
         }
     }
 
@@ -105,5 +111,16 @@ class PhotoFragment : Fragment() {
             }
         }
         return directory.getAbsolutePath()
+    }
+
+    private fun getPhotos(): ArrayList<File> {
+        val files = context?.getDir("imageDir", Context.MODE_PRIVATE)?.listFiles()
+        val al = ArrayList<File>()
+        try {
+          files?.forEach { file -> al.add(file) }
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+        }
+        return al
     }
 }
