@@ -17,4 +17,10 @@
         android:label="@string/title_spendings"
         tools:layout="@layout/fragment_home" />
 
+    <fragment
+        android:id="@+id/navigation_bill_photo"
+        android:name="com.example.budget.ui.photo.PhotoFragment"
+        android:label="@string/title_bill_photo"
+        tools:layout="@layout/fragment_photo" />
+
 </navigation>
