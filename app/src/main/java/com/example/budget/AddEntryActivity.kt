@@ -15,8 +15,11 @@ import com.example.budget.models.EntriesModel
 import com.example.budget.repositories.EntriesRepository
 import com.example.budget.ui.dashboard.DashboardViewModel
 import kotlinx.android.synthetic.main.activity_add_entry.*
+import java.lang.Exception
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 class AddEntryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,16 +35,24 @@ class AddEntryActivity : AppCompatActivity() {
         submit_entry.setOnClickListener {
             var title = title_form.text.toString()
             var amount: Double = amount_form.text.toString().toDouble()
-            var date: String = date_form.text.toString().substring(3)
-            var day: String = date_form.text.toString().substring(0, 3)
-            var depense: Boolean = depense_switch.isChecked
-            if (depense == true){
-                amount =amount * -1
+            try {
+                var fmt = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+                var dateTest = LocalDate.parse(date_form.text.toString(), fmt)
+
+                var date: String = date_form.text.toString().substring(3)
+                var day: String = date_form.text.toString().substring(0, 3)
+                var depense: Boolean = depense_switch.isChecked
+                if (depense == true){
+                    amount =amount * -1
+                }
+                var dashboardViewModel =
+                    ViewModelProvider(this).get(DashboardViewModel::class.java)
+                saveEntryToFireBase(EntriesModel(amount, title, "", day), date)
+                startActivity(Intent(this, MainActivity::class.java))
+            }catch (e: Exception){
+                toast("bad format ! use dd-MM-yyyy")
             }
-            var dashboardViewModel =
-                ViewModelProvider(this).get(DashboardViewModel::class.java)
-            saveEntryToFireBase(EntriesModel(amount, title, "", day), date)
-            startActivity(Intent(this, MainActivity::class.java))
+
         }
 
     }
